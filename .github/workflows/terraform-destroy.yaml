@@ -1,3 +1,30 @@
+# name: Terraform Destroy
+# run-name: Terraform Destroy - ${{ github.ref_name }}
+
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       environment:
+#         description: "Environment to deploy to (e.g., devl, test, prod)"
+#         required: true
+#         type: environment
+#         default: devl
+
+
+# jobs:
+#   apply:
+#     name: 🚧 Run Terraform Destroy
+#     uses: subhamay-bhattacharyya-gha/tf-apply-wf/.github/workflows/terraform-destroy.yaml@main
+#     with:
+#       environment: ${{ inputs.environment }}
+#       terraform-dir: ${{ inputs.terraform-dir }}
+#       tf-vars-file: ${{ inputs.tf-vars-file }}
+#       ci-pipeline: false
+#       aws-role-arn: ${{ vars.AWS_OIDC_ROLE }}
+      # infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
+      # infracost-gist-id: ${{ secrets.INFRACOST_GIST_ID }}
+
+
 name: Terraform Destroy
 run-name: Terraform Destroy - ${{ github.ref_name }}
 
@@ -10,17 +37,28 @@ on:
         type: environment
         default: devl
 
-
 jobs:
-  apply:
-    name: 🚧 Run Terraform Destroy
-    uses: subhamay-bhattacharyya-gha/tf-apply-wf/.github/workflows/terraform-destroy.yaml@main
-    with:
-      environment: ${{ inputs.environment }}
-      terraform-dir: ${{ inputs.terraform-dir }}
-      tf-vars-file: ${{ inputs.tf-vars-file }}
-      ci-pipeline: false
-    secrets:
-      aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
-      infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
-      infracost-gist-id: ${{ secrets.INFRACOST_GIST_ID }}
+  terraform-destroy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - name: 🚧 Run Terraform Destroy
+        run: echo "This is a placeholder for the Terraform Destroy action. Replace this with the actual action to perform the destroy operation."
+        # uses: subhamay-bhattacharyya-gha/tf-destroy-action@main
+        # with:
+        #   # Core Configuration
+        #   terraform-dir: infra/aws/tf
+        #   tf-vars-file: environments/${{ inputs.environment }}/terraform.tfvars
+        #   # Backend Configuration
+        #   backend-type: remote
+        #   cloud-provider: aws
+          
+        #   # HCP Terraform Cloud Backend
+        #   tfc-token: ${{ secrets.TFC_API_TOKEN }}
+          
+        #   # AWS Authentication
+        #   aws-region: ${{ vars.AWS_REGION }}
+        #   aws-role-to-assume: ${{ secrets.AWS_ROLE_ARN }}

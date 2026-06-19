@@ -31,7 +31,7 @@ jobs:
 
   create-release:
     name: Create Release
-    uses: subhamay-bhattacharyya-gha/tf-release-wf/.github/workflows/create-release.yaml@feature/GHA-0002-initial-release
+    uses: subhamay-bhattacharyya-gha/tf-release-wf/.github/workflows/create-release.yaml@main
     with:
       environment: "ci"
       terraform-dir: "tf"
