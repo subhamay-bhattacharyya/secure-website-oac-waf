@@ -6,26 +6,14 @@ on:
     branches:
       - 'feature/**'
       - 'bug/**'
-    paths-ignore:
-      - 'README.md'
-      - '.github/**'
-      - 'CODEOWNERS'
-      - 'LICENSE'
-      - 'VERSION'
-      - 'CHANGELOG.md'
-      - 'CODE_OF_CONDUCT.md'
-      - 'CONTRIBUTING.md'
-      - '*.sh'
-      - '*.txt'
-      - '*.json'
-      - '.gitignore'
-      - '.editorconfig'
-      - '.pre-commit-config.yaml'
+    paths:
+      - 'infra/aws/tf/**'
   workflow_dispatch:
 
 permissions:
   contents: write
   id-token: write
+  security-events: write
 
 jobs:
   terraform-ci:
