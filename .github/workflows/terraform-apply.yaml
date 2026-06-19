@@ -14,13 +14,11 @@ on:
 jobs:
   apply:
     name: 🚧 Run Terraform Apply
-    uses: subhamay-bhattacharyya-gha/tf-apply-wf/.github/workflows/terraform-apply.yaml@main
+    uses: subhamay-bhattacharyya-gha/tf-deploy-multi-reusable-wf/.github/workflows/terraform-deploy.yaml@bug/GHA-0027-bug-heredoc-write-of-snow
     with:
-      environment: ${{ inputs.environment }}
-      terraform-dir: ${{ inputs.terraform-dir }}
-      tf-vars-file: ${{ inputs.tf-vars-file }}
-      ci-pipeline: false
+      cloud-provider: platform
+      tflint-ver: ${{ vars.TF_LINT_VER }}
+      backend-type: remote
+      tf-vars-file: environments/${{ github.event.inputs.environment }}/terraform.tfvars
     secrets:
-      aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
-      infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
-      infracost-gist-id: ${{ secrets.INFRACOST_GIST_ID }}
+      tfc-token: ${{ secrets.TF_TOKEN_APP_TERRAFORM_IO_AWS_ORG }}

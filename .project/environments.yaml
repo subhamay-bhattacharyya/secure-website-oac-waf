@@ -1,0 +1,20 @@
+hcp:
+  # HCP Terraform workspace settings
+  hcp_org: subhamay-aws-projects
+  terraform_version: "~>1.14.0"
+  execution_mode: remote
+  working_directory: infra/platform/tf/
+  branch: main
+  auto_apply: false
+  tfe_address: https://app.terraform.io
+  workspace_variables: []
+
+aws:
+  aws_region: us-east-1
+  environments:
+    - name: devl
+      aws_account_alias: AWS-SCS-C03-DEVL
+    - name: test
+      aws_account_alias: AWS-SCS-C03-TEST
+    - name: prod
+      aws_account_alias: AWS-SCS-C03-PROD

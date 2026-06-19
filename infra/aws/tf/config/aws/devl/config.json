@@ -1,0 +1,22 @@
+{
+  "aws": {
+    "region": "us-east-1",
+    "s3": {
+      "bucket_name": "tasty-byte-website-bucket",
+      "bucket_keys": [
+        "raw-data/json"
+      ],
+      "versioning": true,
+      "kms_key_alias": "SB-KMS",
+      "force_destroy": false,
+      "lifecycle_rules": [
+        {
+          "id": "expire-180-days",
+          "enabled": true,
+          "prefix": "/",
+          "expiration_days": 180
+        }
+      ]
+    }
+  }
+}

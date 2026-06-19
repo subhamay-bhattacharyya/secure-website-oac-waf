@@ -30,12 +30,10 @@ permissions:
 jobs:
   terraform-ci:
     name: CI
-    uses: subhamay-bhattacharyya-gha/tf-ci-reusable-wf/.github/workflows/ci.yaml@feature/GHA-0009-add-condition-for-feature
+    uses: subhamay-bhattacharyya-gha/tf-ci-reusable-wf/.github/workflows/ci.yaml@main
     with:
-      environment: "ci"
-      terraform-dir: "tf"
-    secrets:
-      aws-role-arn: ${{ secrets.AWS_ROLE_ARN }}
-      infracost-api-key: ${{ secrets.INFRACOST_API_KEY }}
-      infracost-gist-id: ${{ secrets.INFRACOST_GIST_ID }}
+      cloud-provider: aws
+      tflint-ver: ${{ vars.TF_LINT_VER }}
+      backend-type: remote
+      tf-vars-file: environments/${{ github.event.inputs.environment }}/terraform.tfvars
 
